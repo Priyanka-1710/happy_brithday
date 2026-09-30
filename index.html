@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🤍</title>
+
+  <!-- Google Fonts: Cormorant Garamond for the emotional headline text, Manrope for everything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== PAGE 1 — SECRET ENTRY ===================== -->
+  <section id="page1" class="page entry-page">
+    <!-- 👉 Add your own "dudu bubu" gif files to the assets folder and
+         update the two src paths below to match your filenames -->
+    <img class="cute-gif cute-gif-left" src="assets/dudu.gif" alt="" aria-hidden="true" />
+    <img class="cute-gif cute-gif-right" src="assets/bubu.gif" alt="" aria-hidden="true" />
+
+    <div class="entry-content">
+      <p class="entry-line" style="--delay: 0.3s">Hey you suttumani... 👀</p>
+      <p class="entry-line" style="--delay: 1.4s">I made something just for you💗</p>
+      <p class="entry-line" style="--delay: 2.5s">There's a little surprise waiting for you...💗</p>
+
+      <button id="openSurpriseBtn" class="entry-button" style="--delay: 3.8s">
+        Open My Surprise 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 2 — BIRTHDAY COUNTDOWN ===================== -->
+  <section id="page2" class="page countdown-page">
+    <div class="countdown-content">
+      <p class="countdown-intro">Today is not just another day... ✨</p>
+      <p class="countdown-intro">It's your special day 🎂</p>
+      <h2 class="countdown-title">Happy Birthday, My Favourite Person ❤️</h2>
+
+      <div class="countdown-grid" id="countdownGrid">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cd-days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cd-hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cd-minutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cd-seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+
+      <!-- Shown instead of the countdown once the birthday has arrived -->
+      <p class="countdown-arrived" id="countdownArrived">It's finally here 🎉</p>
+
+      <button id="moreBtn" class="entry-button">There's more... 💗</button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 3 — WHY YOU? ===================== -->
+  <section id="page3" class="page reasons-page">
+    <div class="reasons-content">
+      <h2 class="reasons-title">Why You?</h2>
+
+      <div class="reasons-list">
+        <!-- 👉 Edit these reason cards freely — add, remove, or reword any of them -->
+        <p class="reason-card">Because you make my ordinary days special.</p>
+        <p class="reason-card">Because even from far away, you feel close.</p>
+        <p class="reason-card">Because you listen to my random talks 😂</p>
+        <p class="reason-card">Because you're simply... YOU. ❤️</p>
+      </div>
+
+      <button class="next-btn entry-button" data-target="page4">click me 💫</button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 4 — OUR MEMORIES ===================== -->
+  <section id="page4" class="page memories-page">
+    <div class="memories-content">
+      <h2 class="memories-title">Our Memories</h2>
+      <p class="memories-hint">Tap a photo</p>
+
+      <div class="polaroid-grid">
+        <!-- 👉 Each polaroid: change the image src to your own photo, and
+             rewrite the memory-back text to the message you want it to reveal. -->
+        <div class="polaroid" tabindex="0">
+          <div class="polaroid-inner">
+            <div class="polaroid-front">
+              <img src="./image/WhatsApp Image 2026-09-29 at 20.29.32 (1).jpeg" alt="A memory of us" />
+            </div>
+            <div class="polaroid-back">
+              <p>Write the memory behind this photo here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="polaroid" tabindex="0">
+          <div class="polaroid-inner">
+            <div class="polaroid-front">
+              <img src="./image/WhatsApp Image 2026-09-29 at 20.29.32.jpeg" alt="A memory of us" />
+            </div>
+            <div class="polaroid-back">
+              <p>Write the memory behind this photo here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="polaroid" tabindex="0">
+          <div class="polaroid-inner">
+            <div class="polaroid-front">
+              <img src="./image/WhatsApp Image 2026-09-29 at 20.29.33.jpeg" alt="A memory of us" />
+            </div>
+            <div class="polaroid-back">
+              <p>Write the memory behind this photo here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="polaroid" tabindex="0">
+          <div class="polaroid-inner">
+            <div class="polaroid-front">
+              <img src="./image/WhatsApp Image 2026-09-29 at 20.31.43.jpeg" alt="A memory of us" />
+            </div>
+            <div class="polaroid-back">
+              <p>Write the memory behind this photo here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="next-btn entry-button" data-target="page5">Go Next 💫</button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 5 — LONG DISTANCE ===================== -->
+  <section id="page5" class="page longdistance-page">
+    <div class="longdistance-content">
+      <p class="ld-line">Different places.</p>
+      <p class="ld-line">Same heart. ❤️</p>
+
+      <div class="ld-map">
+        <div class="ld-location">
+          <!-- 👉 Add your dudu gif file to the assets folder and update the src -->
+          <img class="ld-gif" src="assets/dudu.gif" alt="" aria-hidden="true" />
+          <span class="ld-pin"></span>
+          <p class="ld-city">Chengalpattu</p>
+        </div>
+
+        <div class="ld-connector">
+          <span class="ld-heart">❤️</span>
+        </div>
+
+        <div class="ld-location">
+          <!-- 👉 Add your bubu gif file to the assets folder and update the src -->
+          <img class="ld-gif" src="assets/bubu.gif" alt="" aria-hidden="true" />
+          <span class="ld-pin"></span>
+          <p class="ld-city">Thanjavur</p>
+        </div>
+      </div>
+
+      <button class="next-btn entry-button" data-target="page6">Next💫</button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 6 — OUR SONG ===================== -->
+  <section id="page6" class="page song-page">
+    <div class="song-content">
+      <p class="song-label">Our Song 🎧</p>
+      <p class="song-caption">This song always reminds me of you...</p>
+
+      <div class="song-player">
+        <button id="playPauseBtn" class="play-button" aria-label="Play song">
+          <span class="play-icon" id="playIcon">▶</span>
+        </button>
+
+        <div class="song-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- 👉 Put your own audio file at music/our-song.mp3 (any filename works,
+           just update the src below to match) -->
+      <audio id="songAudio" src="./Eppadi Vanthaayo Punnagai Thanthaayo - Eppadi Vandhaayo _ Aaromaley _ Tamil.mp3"></audio>
+
+      <button class="next-btn entry-button" data-target="page7">one more click💫</button>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE 7 — ONE LAST THING ===================== -->
+  <section id="page7" class="page lastthing-page">
+    <div class="lastthing-content">
+      <p class="lastthing-line" style="--delay: 0s">If I could give you one thing for your birthday...</p>
+      <p class="lastthing-line" style="--delay: 1.6s">I would give you the ability to see yourself through my eyes.</p>
+      <p class="lastthing-line" style="--delay: 3.4s">Because maybe you understand how special you are to me.❤️</p>
+
+      <button class="next-btn entry-button" data-target="page8" style="--delay: 5.2s">Last click💫</button>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL PAGE — BIRTHDAY SURPRISE ===================== -->
+  <section id="page8" class="page final-page">
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+    <div class="final-content">
+      <div class="cake" aria-hidden="true">🎂</div>
+
+      <!-- 👉 Replace "His Name" with his actual name -->
+      <h2 class="final-title">Wishing you many more happy returns of the day, <span class="final-name">Darloo kutty</span>❤️</h2>
+      <button id="giftBtn" class="entry-button">Open Your Gift🎁</button>
+
+      <!-- 👉 Replace this with your own personal birthday message.
+           It stays hidden until the button above is clicked. -->
+      <div class="final-message" id="finalMessage">
+        <p>Happy Birthday to the one who makes my heart feel at home.❤️ 
+          You came into my life so quietly, yet became one of the most beautiful parts of it. No matter how many miles are between us, you’re always close to my heart.🫶🏻
+  I hope this year brings you endless happiness, success, and everything you deserve. And my only wish for us is that someday, we won’t have to celebrate your birthday from miles apart.❤️
+Happy Birthday, my love. ✨
+I’ll always be here, loving you from wherever I am. ❤️
+ I love you more🫶🏻❤️......
+</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

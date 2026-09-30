@@ -1,0 +1,847 @@
+/* =========================================================
+   DESIGN TOKENS
+   A near-black warm plum background with a dusty-rose accent,
+   instead of flat black + generic pink.
+   ========================================================= */
+:root {
+  --bg-deep: #140d10;
+  --bg-soft: #1e1418;
+  --rose: #d98a9b;
+  --wine: #7c3b46;
+  --ivory: #f4ece9;
+  --muted: #b79aa0;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* =========================================================
+   PAGE 1 — SECRET ENTRY
+   ========================================================= */
+.entry-page {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, var(--bg-soft), var(--bg-deep) 70%);
+  text-align: center;
+}
+
+/* Cute floating gif decorations in the corners — supply your own
+   "dudu"/"bubu" gif files in the assets folder */
+.cute-gif {
+  position: absolute;
+  width: clamp(64px, 16vw, 96px);
+  pointer-events: none;
+  animation: gifFloat 3.2s ease-in-out infinite;
+}
+
+.cute-gif-left {
+  left: clamp(0.8rem, 4vw, 2.5rem);
+  bottom: clamp(1.2rem, 6vh, 3rem);
+}
+
+.cute-gif-right {
+  right: clamp(0.8rem, 4vw, 2.5rem);
+  top: clamp(1.2rem, 6vh, 3rem);
+  animation-delay: 0.6s;
+}
+
+@keyframes gifFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.entry-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  max-width: 32rem;
+}
+
+.entry-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  color: var(--ivory);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeInUp 1.1s ease forwards;
+  animation-delay: var(--delay);
+}
+
+.entry-button {
+  margin-top: 1.2rem;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--rose);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rose);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeInUp 1.1s ease forwards;
+  animation-delay: var(--delay);
+
+  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.entry-button:hover,
+.entry-button:focus-visible {
+  background: var(--rose);
+  color: var(--bg-deep);
+  box-shadow: 0 0 24px rgba(217, 138, 155, 0.45);
+}
+
+.entry-button:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+}
+
+/* Spacing for the "Next" buttons added to the bottom of Pages 3–7 */
+.next-btn {
+  margin-top: 2.6rem;
+}
+
+/* Fade state applied by JS when the button is clicked, before scrolling */
+.entry-page.is-leaving .entry-content {
+  animation: fadeOutDown 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* =========================================================
+   PAGE 2 — BIRTHDAY COUNTDOWN
+   ========================================================= */
+.countdown-page {
+  background: linear-gradient(180deg, var(--bg-soft), var(--bg-deep));
+  text-align: center;
+}
+
+.countdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 40rem;
+}
+
+.countdown-intro {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.countdown-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--ivory);
+  margin: 0.6rem 0 2rem;
+}
+
+.countdown-grid {
+  display: flex;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  margin-bottom: 2.2rem;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  font-weight: 600;
+  color: var(--rose);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.countdown-arrived {
+  display: none;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: var(--rose);
+  margin-bottom: 2.2rem;
+}
+
+/* When JS detects the birthday has arrived, it adds this class to the section */
+.countdown-page.has-arrived .countdown-grid {
+  display: none;
+}
+
+.countdown-page.has-arrived .countdown-arrived {
+  display: block;
+}
+
+/* =========================================================
+   PAGE 3 — WHY YOU?
+   Cards styled like small kept notes, each at a gentle
+   alternating tilt rather than a uniform grid.
+   ========================================================= */
+.reasons-page {
+  background: var(--bg-deep);
+  text-align: center;
+}
+
+.reasons-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 34rem;
+  width: 100%;
+}
+
+.reasons-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--ivory);
+  margin-bottom: 2.6rem;
+}
+
+.reasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+}
+
+.reason-card {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+  color: var(--ivory);
+  background: var(--bg-soft);
+  border: 1px solid rgba(217, 138, 155, 0.25);
+  border-radius: 4px;
+  padding: 1.4rem 1.8rem;
+  box-shadow: 0 12px 30px -14px rgba(124, 59, 70, 0.55);
+
+  /* Alternate a slight tilt, like notes set down at an angle */
+  transform: rotate(-2deg) translateY(28px);
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reason-card:nth-child(even) {
+  transform: rotate(2deg) translateY(28px);
+}
+
+.reason-card.in-view {
+  opacity: 1;
+  transform: rotate(-1deg) translateY(0);
+}
+
+.reason-card:nth-child(even).in-view {
+  transform: rotate(1deg) translateY(0);
+}
+
+/* =========================================================
+   PAGE 4 — OUR MEMORIES
+   Polaroid-style photo cards, scattered at gentle alternating
+   tilts, that flip on tap to reveal a memory on the back.
+   ========================================================= */
+.memories-page {
+  background: var(--bg-soft);
+  text-align: center;
+}
+
+.memories-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.memories-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--ivory);
+  margin-bottom: 0.5rem;
+}
+
+.memories-hint {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2.4rem;
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem 1.2rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .polaroid-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.polaroid {
+  perspective: 1200px;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+}
+
+.polaroid:nth-child(odd) {
+  transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.polaroid.is-flipped .polaroid-inner {
+  transform: rotateY(180deg);
+}
+
+.polaroid-front,
+.polaroid-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background: var(--ivory);
+  border-radius: 2px;
+  box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 0.5rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-back {
+  transform: rotateY(180deg);
+  background: var(--wine);
+  padding: 1.2rem;
+}
+
+.polaroid-back p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  color: var(--ivory);
+}
+
+/* =========================================================
+   PAGE 5 — LONG DISTANCE
+   Two pins connected by a line that draws itself in as you
+   scroll, with a heart pulsing at the midpoint.
+   ========================================================= */
+.longdistance-page {
+  background: var(--bg-deep);
+  text-align: center;
+}
+
+.longdistance-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 36rem;
+  width: 100%;
+}
+
+.ld-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--ivory);
+}
+
+.ld-line + .ld-line {
+  margin-bottom: 3rem;
+}
+
+.ld-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.ld-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.ld-pin {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 5px rgba(217, 138, 155, 0.15);
+}
+
+/* Cute gif above each location pin — supply your own "dudu"/"bubu"
+   gif files in the assets folder */
+.ld-gif {
+  width: clamp(48px, 12vw, 64px);
+  margin-bottom: 0.2rem;
+}
+
+.ld-city {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ld-connector {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ld-connector::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rose), var(--wine));
+  transition: width 1.8s ease;
+}
+
+.ld-connector.in-view::before {
+  width: 100%;
+}
+
+.ld-heart {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-deep);
+  padding: 0 0.5rem;
+  font-size: 1.3rem;
+  opacity: 0;
+  transition: opacity 0.6s ease 1.3s;
+  animation: heartPulse 1.8s ease-in-out infinite;
+}
+
+.ld-connector.in-view .ld-heart {
+  opacity: 1;
+}
+
+@keyframes heartPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+/* On narrow screens, stack the two locations with a vertical
+   connecting line instead of a horizontal one */
+@media (max-width: 640px) {
+  .ld-map {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ld-connector {
+    width: 2px;
+    height: 70px;
+    flex: none;
+  }
+
+  .ld-connector::before {
+    width: 1px;
+    height: 0%;
+    left: 50%;
+    top: 0;
+    transition: height 1.8s ease;
+  }
+
+  .ld-connector.in-view::before {
+    height: 100%;
+  }
+}
+
+/* =========================================================
+   PAGE 6 — OUR SONG
+   A play/pause button beside a small equalizer that only
+   animates while the song is actually playing.
+   ========================================================= */
+.song-page {
+  background: radial-gradient(circle at 50% 60%, var(--bg-soft), var(--bg-deep) 75%);
+  text-align: center;
+}
+
+.song-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.song-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  color: var(--ivory);
+  margin-bottom: 0.6rem;
+}
+
+.song-caption {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 2.6rem;
+}
+
+.song-player {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.play-button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--rose);
+  background: transparent;
+  color: var(--rose);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.play-button:hover,
+.play-button:focus-visible {
+  background: var(--rose);
+  color: var(--bg-deep);
+  box-shadow: 0 0 24px rgba(217, 138, 155, 0.45);
+}
+
+.play-button:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+}
+
+/* Nudge the ▶ play icon slightly right so it looks visually centered */
+.play-icon {
+  transform: translateX(2px);
+}
+
+.song-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 32px;
+}
+
+.song-bars span {
+  width: 4px;
+  height: 8px;
+  background: var(--rose);
+  border-radius: 2px;
+  animation: barBounce 1s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.song-bars span:nth-child(1) {
+  animation-delay: 0s;
+}
+.song-bars span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.song-bars span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.song-bars span:nth-child(4) {
+  animation-delay: 0.1s;
+}
+.song-bars span:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.song-player.is-playing .song-bars span {
+  animation-play-state: running;
+}
+
+@keyframes barBounce {
+  0%,
+  100% {
+    height: 8px;
+  }
+  50% {
+    height: 28px;
+  }
+}
+
+/* =========================================================
+   PAGE 7 — ONE LAST THING
+   Lines stay invisible until this section is scrolled into
+   view, then reveal one at a time with generous pacing.
+   ========================================================= */
+.lastthing-page {
+  background: var(--bg-deep);
+  text-align: center;
+}
+
+.lastthing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  max-width: 34rem;
+}
+
+.lastthing-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 4vw, 1.9rem);
+  color: var(--ivory);
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* JS adds .is-revealed to the section once it scrolls into view,
+   which starts each line's fade-in at its own --delay */
+.lastthing-page.is-revealed .lastthing-line {
+  animation: fadeInUp 1.4s ease forwards;
+  animation-delay: var(--delay);
+}
+
+/* The "Next" button on this page stays hidden until the reveal too */
+.lastthing-page .next-btn {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.lastthing-page.is-revealed .next-btn {
+  animation: fadeInUp 1.4s ease forwards;
+  animation-delay: var(--delay);
+}
+
+/* =========================================================
+   FINAL PAGE — BIRTHDAY SURPRISE
+   ========================================================= */
+.final-page {
+  position: relative;
+  background: radial-gradient(circle at 50% 40%, var(--bg-soft), var(--bg-deep) 75%);
+  text-align: center;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.final-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 32rem;
+}
+
+.cake {
+  font-size: clamp(3.5rem, 12vw, 5rem);
+  margin-bottom: 1rem;
+}
+
+.final-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  color: var(--ivory);
+  margin-bottom: 2.2rem;
+}
+
+.final-name {
+  color: var(--rose);
+}
+
+/* The personal message stays collapsed and invisible until
+   the gift button is clicked */
+.final-message {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 1s ease, opacity 1s ease, margin-top 1s ease;
+}
+
+.final-message p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.05rem, 3.2vw, 1.3rem);
+  color: var(--ivory);
+  line-height: 1.6;
+}
+
+.final-page.is-opened .final-message {
+  max-height: 20rem;
+  opacity: 1;
+  margin-top: 2rem;
+}
+
+.final-page.is-opened #giftBtn {
+  display: none;
+}
+
+/* Confetti pieces fall from the top of the section and fade
+   out near the bottom */
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -5%;
+  font-size: 1.1rem;
+  animation-name: confettiFall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   Generic stub page — used while a later page hasn't been
+   built yet during development
+   ========================================================= */
+.stub-page {
+  background: var(--bg-soft);
+}
+
+.stub-note {
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+/* Respect users who've asked for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .entry-line,
+  .entry-button,
+  .lastthing-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .lastthing-page .next-btn {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .cute-gif {
+    animation: none;
+  }
+  .ld-heart {
+    animation: none;
+  }
+  .song-bars span {
+    animation: none;
+    height: 16px;
+  }
+  .confetti-piece {
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
